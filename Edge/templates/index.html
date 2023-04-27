@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Arduino Log</title>
+    <style>
+      table { width: 100%; border-collapse: collapse; }
+      th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+      th { background-color: #f2f2f2; }
+    </style>
+  </head>
+  <body>
+    <h1>Smart Lock Log</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Date and Time</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in data_log %}
+          <tr>
+            <td>{{ item.timestamp }}</td>
+            <td>{{ item.message }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+    <h2>Update Acceptable UID</h2>
+    <form action="{{ url_for('update_uid') }}" method="post">
+      <label for="new_uid">New UID:</label>
+      <input type="text" id="new_uid" name="new_uid" required>
+      <input type="submit" value="Update UID">
+    </form>
+  </body>
+</html>
+
